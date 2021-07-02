@@ -175,10 +175,10 @@ export default {
 </script>
 
 <style scoped>
- ::v-deep .el-image__error, .el-image__placeholder{
+ ::v-deep(.el-image__error), .el-image__placeholder{
     background: none;
   }
- ::v-deep .el-image-viewer__wrapper{
+ ::v-deep(.el-image-viewer__wrapper){
     top: 55px;
   }
 </style>
