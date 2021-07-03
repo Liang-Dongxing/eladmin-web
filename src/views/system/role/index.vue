@@ -347,13 +347,13 @@ export default {
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
- ::v-deep(.el-input-number .el-input__inner) {
+ ::v-deep .el-input-number .el-input__inner {
     text-align: left;
   }
- ::v-deep(.vue-treeselect__multi-value){
+ ::v-deep .vue-treeselect__multi-value{
     margin-bottom: 0;
   }
- ::v-deep(.vue-treeselect__multi-value-item){
+ ::v-deep .vue-treeselect__multi-value-item{
     border: 0;
     padding: 0;
   }

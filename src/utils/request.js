@@ -1,6 +1,6 @@
 import axios from 'axios'
 import router from '@/router/routers'
-import { ElNotification } from 'element-plus'
+import { Notification } from 'element-ui'
 import store from '../store'
 import { getToken } from '@/utils/auth'
 import Config from '@/settings'
@@ -38,7 +38,7 @@ service.interceptors.response.use(
       reader.readAsText(error.response.data, 'utf-8')
       reader.onload = function(e) {
         const errorMsg = JSON.parse(reader.result).message
-        ElNotification.error({
+        Notification.error({
           title: errorMsg,
           duration: 5000
         })
@@ -49,7 +49,7 @@ service.interceptors.response.use(
         code = error.response.data.status
       } catch (e) {
         if (error.toString().indexOf('Error: timeout') !== -1) {
-          ElNotification.error({
+          Notification.error({
             title: '网络请求超时',
             duration: 5000
           })
@@ -69,14 +69,14 @@ service.interceptors.response.use(
         } else {
           const errorMsg = error.response.data.message
           if (errorMsg !== undefined) {
-            ElNotification.error({
+            Notification.error({
               title: errorMsg,
               duration: 5000
             })
           }
         }
       } else {
-        ElNotification.error({
+        Notification.error({
           title: '接口请求失败',
           duration: 5000
         })

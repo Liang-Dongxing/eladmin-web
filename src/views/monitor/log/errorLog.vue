@@ -124,7 +124,7 @@ export default {
 .demo-table-expand .el-form-item__content {
   font-size: 12px;
 }
-::v-deep(.el-dialog__body) {
+/deep/ .el-dialog__body {
   padding: 0 20px 10px 20px !important;
 }
 .java.hljs {
