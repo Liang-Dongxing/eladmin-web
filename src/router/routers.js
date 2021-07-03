@@ -1,27 +1,23 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import Vue from 'vue'
+import Router from 'vue-router'
 import Layout from '../layout/index'
-import Login from '@/views/login'
-import Page404 from '@/views/features/404'
-import Page401 from '@/views/features/401'
-import Redirect from '@/views/features/redirect'
-import Dashboard from '@/views/home'
-import Center from '@/views/system/user/center'
+
+Vue.use(Router)
 
 export const constantRouterMap = [
-  {
-    path: '/login',
+  { path: '/login',
     meta: { title: '登录', noCache: true },
-    component: Login,
+    component: (resolve) => require(['@/views/login'], resolve),
     hidden: true
   },
   {
     path: '/404',
-    component: Page404,
+    component: (resolve) => require(['@/views/features/404'], resolve),
     hidden: true
   },
   {
     path: '/401',
-    component: Page401,
+    component: (resolve) => require(['@/views/features/401'], resolve),
     hidden: true
   },
   {
@@ -31,7 +27,7 @@ export const constantRouterMap = [
     children: [
       {
         path: '/redirect/:path*',
-        component: Redirect
+        component: (resolve) => require(['@/views/features/redirect'], resolve)
       }
     ]
   },
@@ -42,7 +38,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'dashboard',
-        component: Dashboard,
+        component: (resolve) => require(['@/views/home'], resolve),
         name: 'Dashboard',
         meta: { title: '首页', icon: 'index', affix: true, noCache: true }
       }
@@ -56,7 +52,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'center',
-        component: Center,
+        component: (resolve) => require(['@/views/system/user/center'], resolve),
         name: '个人中心',
         meta: { title: '个人中心' }
       }
@@ -64,11 +60,9 @@ export const constantRouterMap = [
   }
 ]
 
-const router = createRouter({
-  'history': createWebHistory(),
-  // "hash": createWebHashHistory()
-  // "abstract": createMemoryHistory()
-  scrollBehavior: (to, from, savedPosition) => ({ el: '#main', top: 0 }),
+export default new Router({
+  // mode: 'hash',
+  mode: 'history',
+  scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
-export default router
