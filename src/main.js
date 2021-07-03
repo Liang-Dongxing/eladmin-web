@@ -1,10 +1,10 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 
 import Cookies from 'js-cookie'
 
 import 'normalize.css/normalize.css'
 
-import ElementPlus from 'element-plus'
+import Element from 'element-ui'
 //
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -27,20 +27,24 @@ import App from './App'
 import store from './store'
 import router from './router/routers'
 
-import SvgIcon from '@/components/SvgIcon'
 import './assets/icons' // icon
 import './router/index' // permission control
 import 'echarts-gl'
 
-const app = createApp(App)
-app.use(store)
-app.use(router)
-app.use(checkPer)
-app.use(VueHighlightJS)
-app.use(mavonEditor)
-app.use(permission)
-app.use(dict)
-app.use(SvgIcon)
-app.use(ElementPlus, { size: Cookies.get('size') || 'small' })
-app.config.productionTip = false
-app.mount('#app')
+Vue.use(checkPer)
+Vue.use(VueHighlightJS)
+Vue.use(mavonEditor)
+Vue.use(permission)
+Vue.use(dict)
+Vue.use(Element, {
+  size: Cookies.get('size') || 'small' // set element-ui default size
+})
+
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
+})
